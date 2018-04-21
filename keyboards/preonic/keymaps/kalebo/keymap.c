@@ -40,6 +40,7 @@ enum preonic_keycodes {
 #define HPR_TAB     ALL_T(KC_TAB)               // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
 #define SFT_ENT     SFT_T(KC_ENT)               // Tap for Enter, hold for Shift
 #define MEH_ESC     MEH_T(KC_ESC)               // Tap for Esc, hold for Meh (Ctrl+Alt+Shift)
+#define MSK_SPC     LT(_MOUSEKEYS, KC_SPC)      // Tap for Space, hold for mouse key layer
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -58,10 +59,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_preonic_grid( \
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
-  HPR_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,  \
-  MEH_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+  HPR_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,  \
+  MEH_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,  \
-  KC_LEAD, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   LT(_MOUSEKEYS, KC_SPC),  LT(_MOUSEKEYS, KC_SPC),  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  KC_LEAD, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   MSK_SPC, MSK_SPC, RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 /* Colemak
@@ -99,11 +100,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_DVORAK] = LAYOUT_preonic_grid( \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
+  KC_GRV,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
   HPR_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_SLSH,  \
   MEH_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_MINUS, \
-  KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    SFT_ENT,  \
-  KC_LEAD, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   LT(_MOUSEKEYS, KC_SPC),  LT(_MOUSEKEYS, KC_SPC),  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  KC_LSFT,  KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    SFT_ENT,  \
+  KC_LEAD,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   MSK_SPC, MSK_SPC, RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 /* Lower
@@ -172,8 +173,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MOUSEKEYS] = LAYOUT_preonic_grid( \
 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
 _______, _______, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, _______, _______, _______, KC_MS_UP, _______, _______, _______, \
-_______, _______, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, KC_MS_WH_UP, _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _______, _______, \
-_______, _______, _______, _______, _______, KC_MS_WH_DOWN, _______, _______, KC_MS_DOWN, _______, _______, _______, \
+_______, _______, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, _______, _______, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _______, _______, \
+_______, _______, _______, KC_MS_WH_DOWN, KC_MS_WH_UP, _______, _______, _______, KC_MS_DOWN, _______, _______, _______, \
 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
 )
 
