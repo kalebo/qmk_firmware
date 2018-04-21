@@ -3,6 +3,14 @@
 
 #include "config_common.h"
 
+
+#define MOUSEKEY_DELAY             0
+#define MOUSEKEY_INTERVAL          16
+#define MOUSEKEY_MAX_SPEED         7
+#define MOUSEKEY_TIME_TO_MAX       60
+#define MOUSEKEY_WHEEL_MAX_SPEED   8
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 40
+
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(PREONIC_SOUND)
     // #define STARTUP_SONG SONG(NO_SOUND)
