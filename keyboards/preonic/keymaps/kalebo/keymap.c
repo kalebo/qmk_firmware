@@ -33,7 +33,8 @@ enum preonic_keycodes {
   LOWER,
   RAISE,
   ADJUST,
-  MOUSEKEYS
+  MOUSEKEYS,
+  MAGSYS
 };
 
 // Inspired by macros from smt
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid( \
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_APP, KC_APP, KC_INS, KC_DEL, KC_BKSP, \
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, MAGSYS, KC_APP, KC_INS, KC_DEL, KC_BSPC, \
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_EQUAL,  \
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_PLUS, \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,S(KC_NUHS),S(KC_NUBS),KC_LCBR, KC_RCBR, _______, \
@@ -142,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_preonic_grid( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, KC_BKSP, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, KC_BSPC, \
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,  \
   KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, KC_PGDN, KC_PGUP, _______, \
@@ -221,6 +222,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
+        // MAGSYS example borrowed from bluebear
+        case MAGSYS: //Magic SysRq function - Toggles key on and off depending on state of LALT key
+          if (record->event.pressed) {
+            if (keyboard_report->mods & (MOD_BIT(KC_LALT))) {
+              unregister_code(KC_PSCR);
+              unregister_code(KC_LALT);
+            } else {
+              register_code(KC_LALT);
+              register_code(KC_PSCR);
+            }
+          }
+break;
       }
     return true;
 };
