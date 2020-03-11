@@ -3,6 +3,7 @@
 
 #include "config_common.h"
 
+#define LEADER_TIMEOUT 300
 
 #define MOUSEKEY_DELAY             0
 #define MOUSEKEY_INTERVAL          16
