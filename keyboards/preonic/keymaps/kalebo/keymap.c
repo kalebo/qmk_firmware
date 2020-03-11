@@ -237,3 +237,37 @@ break;
       }
     return true;
 };
+
+bool did_leader_succeed;
+float song_zelda_puzzle[][2] = SONG(ZELDA_PUZZLE);
+float song_zelda_treasure[][2] = SONG(ZELDA_TREASURE);
+
+LEADER_EXTERNS();
+// Runs constantly in the background, in a loop.
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    did_leader_succeed = leading = false;
+
+   SEQ_ONE_KEY (KC_M) {
+     layer_invert(_MOUSEKEYS);
+     did_leader_succeed = true;
+    }
+
+   SEQ_TWO_KEYS (KC_H, KC_W) {
+     SEND_STRING("Hello World!");
+     did_leader_succeed = true;
+    }
+
+   SEQ_TWO_KEYS (KC_Z, KC_Z) {
+     PLAY_SONG(song_zelda_puzzle);
+     did_leader_succeed = true;
+    }
+
+   SEQ_TWO_KEYS (KC_Z, KC_V) {
+     PLAY_SONG(song_zelda_treasure);
+     did_leader_succeed = true;
+    }
+
+    leader_end();
+  };
+};
